@@ -34,12 +34,14 @@ public class CategoryController {
 	
 	@PostMapping
 	public APIRespone<?> addCategory(@RequestBody CategoryRequest cR) {
-		return new APIRespone<>(HttpStatus.CREATED.value(), "Category created successfully", cS.addCategory(cR));
+		return new APIRespone<>(HttpStatus.CREATED.value(), "Category created successfully",
+				cS.addCategory(cR));
 	}
 	
 	@PutMapping("/{id}")
 	public APIRespone<?> updateCategory(@RequestBody CategoryRequest cR, @PathVariable int id) {
-		return new APIRespone<>(HttpStatus.ACCEPTED.value(), "Category updated successfully", cS.updateCategory(id, cR));
+		return new APIRespone<>(HttpStatus.ACCEPTED.value(), "Category updated successfully",
+				cS.updateCategory(id, cR));
 	}
 	
 	@DeleteMapping("/{id}")
