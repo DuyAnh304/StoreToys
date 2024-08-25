@@ -1,15 +1,12 @@
 package com.toyshop.StoreToys_API.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toyshop.StoreToys_API.DTOs.request.BrandRequest;
 import com.toyshop.StoreToys_API.DTOs.respone.APIRespone;
-import com.toyshop.StoreToys_API.DTOs.respone.BrandRespone;
 import com.toyshop.StoreToys_API.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 
 @RestController
 @RequestMapping("/brand")
@@ -19,30 +16,31 @@ public class BrandController {
     private BrandService bSer;
 
     @GetMapping(value = {"/", ""})
-    public APIRespone<?> getAllBrands() {
-        return new APIRespone<>(HttpStatus.OK.value(), "Request Successfully", bSer.getAllBrands());
+    public ResponseEntity<?> getAllBrands() {
+        return ResponseEntity.ok(new APIRespone<>(bSer.getAllBrands(), "Request Successfully"));
     }
 
     @GetMapping("/{id}")
-    public APIRespone<?> getBrandById(@PathVariable int id) {
-        return new APIRespone<>(HttpStatus.OK.value(), "Request successfully", bSer.getBrand(id));
+    public ResponseEntity<?> getBrandById(@PathVariable int id) {
+        return ResponseEntity.status(200).body(new APIRespone<>(bSer.getBrand(id), "Request successfully"));
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
-    public APIRespone<?> addBand(@ModelAttribute BrandRequest bReq){
-        return new APIRespone<>(HttpStatus.CREATED.value(), "Brand created successfully",
-                bSer.addBrand(bReq));
+    public ResponseEntity<?> addBand(@ModelAttribute BrandRequest bReq){
+        return ResponseEntity.status(201)
+        		.body(new APIRespone<>(bSer.addBrand(bReq), "Brand created successfully"));
     }
 
     @PutMapping(consumes = {"multipart/form-data"}, value = {"/{id}"})
-    public APIRespone<?> updateBrand(@PathVariable int id, @ModelAttribute BrandRequest bReq){
-        return new APIRespone<>(HttpStatus.ACCEPTED.value(), "Brand updated successfully",
-                bSer.updateBrand(id,bReq));
+    public ResponseEntity<?> updateBrand(@PathVariable int id, @ModelAttribute BrandRequest bReq){
+        return ResponseEntity.status(202)
+        		.body(new APIRespone<>(bSer.updateBrand(id,bReq), "Brand updated successfully"));
     }
 
     @DeleteMapping("/{id}")
-    public APIRespone<?> deleteBrand(@PathVariable int id) {
+    public ResponseEntity<?> deleteBrand(@PathVariable int id) {
         bSer.deleteBrand(id);
-        return new APIRespone<>(HttpStatus.NO_CONTENT.value(), "Brand deleted successfully");
+        return ResponseEntity.status(204)
+        		.body(new APIRespone<>(HttpStatus.NO_CONTENT.value(), "Brand deleted successfully"));
     }
 }

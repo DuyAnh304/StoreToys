@@ -17,16 +17,14 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class APIRespone<T> {
 
-	int status;
-	String message;
-	Date timestamp;
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	T data;
+	String message;
+	Date timestamp;
 
 	// Constructor với ngày giờ hiện tại
 	// Dành cho POST, PUT, GET
-	public APIRespone(int status, String message, T data) {
-		this.status = status;
+	public APIRespone(T data, String message) {
 		this.message = message;
 		this.data = data;
 		this.timestamp = new Date(); // Lấy ngày giờ hiện tại
@@ -34,8 +32,7 @@ public class APIRespone<T> {
 
 	// Constructor với ngày giờ hiện tại
 	// Dành cho DELETE
-	public APIRespone(int status, String message) {
-		this.status = status;
+	public APIRespone(String message) {
 		this.message = message;
 		this.timestamp = new Date(); // Lấy ngày giờ hiện tại
 	}

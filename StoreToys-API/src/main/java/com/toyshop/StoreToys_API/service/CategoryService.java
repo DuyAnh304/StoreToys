@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.toyshop.StoreToys_API.DTOs.request.CategoryRequest;
 import com.toyshop.StoreToys_API.DTOs.respone.CategoryRespone;
-import com.toyshop.StoreToys_API.model.Category;
 
 public interface CategoryService {
 
