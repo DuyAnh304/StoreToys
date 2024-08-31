@@ -15,9 +15,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class APIRespone<T> {
 
-	@JsonInclude(JsonInclude.Include.NON_NULL)
 	T data;
 	String message;
 	Date timestamp;

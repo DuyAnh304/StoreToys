@@ -29,7 +29,8 @@ public class CategoryController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getByID(@PathVariable int id) {
-		return ResponseEntity.status(HttpStatus.OK).body(new APIRespone<>(cS.getCategory(id), "Request successfully"));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new APIRespone<>(cS.getCategory(id), "Request successfully"));
 	}
 	
 	@PostMapping
