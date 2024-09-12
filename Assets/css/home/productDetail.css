@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Cấu trúc chung và định dạng sản phẩm */
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background: #f9f9f9; /* Màu nền nhẹ nhàng cho phần chi tiết sản phẩm */
+    border-radius: 10px; /* Bo tròn góc */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Thêm bóng đổ nhẹ */
+    margin-bottom: 30px; /* Khoảng cách với phần tử tiếp theo */
+}
+
+/* Định dạng hình ảnh sản phẩm */
+.product-image {
+    flex: 0 0 40%;
+    max-width: 40%;
+    margin-right: 20px;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Thêm bóng đổ cho hình ảnh */
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+    flex: 0 0 58%; /* Giảm một chút để không bị sát quá cạnh */
+    max-width: 58%;
+}
+
+.product-name {
+    font-size: 24px;
+    margin-bottom: 15px; /* Tăng khoảng cách dưới */
+    color: #333;
+}
+.product-category {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px; /* Tăng khoảng cách dưới */
+    color: #333;
+}
+.product-brand {
+    font-size: 24px;
+    margin-bottom: 15px; /* Tăng khoảng cách dưới */
+    color: #333;
+}
+.product-sex {
+    font-size: 24px;
+    margin-bottom: 15px; /* Tăng khoảng cách dưới */
+    color: #333;
+}
+.product-price {
+    font-size: 20px; /* Tăng kích thước cho dễ nhìn */
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 25px; /* Tăng khoảng cách dưới */
+    line-height: 1.5; /* Khoảng cách giữa các dòng */
+}
+
+/* Nút thêm vào giỏ hàng */
+.add-to-cart {
+    display: inline-block;
+    padding: 12px 25px; /* Tăng kích thước đệm cho nút */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Tăng kích thước font */
+    font-weight: 500; /* Độ đậm nhẹ */
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
