@@ -12,7 +12,7 @@
         <h1 style="margin-left: 120px;">ADMIN</h1>
         <h1 > Cửa hàng Stoys</h1>
         <div style="margin-right: 120px;margin-top: 3.5rem;" class="back">
-            <a style="color: white;" href="../admin.php">Đến trang chủ</a>
+            <a style="color: white;" href="../login/Login.html">Đăng xuất</a>
             <i class="bx bx-right-arrow-alt"></i>
         </div>
     </header>
@@ -24,10 +24,14 @@
             </div>
             <div class="menu">
                 <div class="taikhoan">
+                    <div class="taikhoan"></div>
                     <h3>Quản lý tài khoản</h3>
                     <ul> 
-                        <li><a href="../user/AddUser.html">Thêm tài khoản</a></li>
-                        <li><a href="../user/UserManagerment.html">Danh sách tài khoản</a></li>
+                        <li><a href="../account/AccountManagerment.html">Danh sách tài khoản</a></li>
+                    </ul>
+                    <h3>Quản lý người dùng</h3>
+                    <ul> 
+                        <li><a href="../user/UserManagerment.html">Danh sách người dùng</a></li>
                     </ul>
                 </div>
                 <div class="taikhoan">
@@ -82,6 +86,7 @@ table{
                             <th style="margin-left: 2rem;" scope="col">Ảnh</th>
                             <th style="margin-left: 2rem;" scope="col">Giới tính</th>
                             <th style="margin-left: 2rem;" scope="col">Giá</th>
+                            <th style="margin-left: 2rem;" scope="col">Số lượng</th>
                             <th style="margin-left: 2rem;" scope="col">Danh Mục</th>
                             <th style="margin-left: 2rem;" scope="col">Thương Hiệu</th>
                             </tr>
@@ -102,29 +107,27 @@ table{
                 <button onClick="hiddenUpdateProduct()">X</button>
             </div>
             <header class="modal-header">Cập nhật sản phẩm</header>
-            <div class="modal-body">
+            <form class="modal-body" id="product-update-form" enctype="multipart/form-data">
                 <div class="column">
-                    <label for="category" class="modal-label">Tên danh mục</label>
-                    <select id="category" name="input-category">
-
-                    </select>
-                    <label for="brand" class="modal-label">Thương hiệu</label>
-                    <select id="brand" name="input-brand">
-                        
-                    </select>
                     <label for="product_name" class="modal-label">Tên sản phẩm</label>
-                    <input id="product_name" type="text" placeholder="Họ và tên" name="input-product_name">
-                    <label for="product_img" class="modal-label">Ảnh</label>
-                    <input id="product_img" type="file" placeholder="product_img" name="input-product_img">
+                    <input id="product_name" type="text" placeholder="Tên sản phẩm" name="product_name">
+                    <label for="category" class="modal-label">Tên danh mục</label>
+                    <select id="category" name="category_id"></select>
+                    <label for="brand" class="modal-label">Thương hiệu</label>
+                    <select id="brand" name="brand_id"></select>
+                    <label for="product_quantity" class="modal-label">Số lượng</label>
+                    <input id="product_quantity" type="text" placeholder="Số lượng" name="product_quantity">
                 </div>
                 <div class="column">
+                    <label for="product_img" class="modal-label">Ảnh</label>
+                    <input id="product_img" type="file" placeholder="product_img" name="product_img">
                     <label for="product_sex" class="modal-label">Giới tính</label>
-                    <input id="product_sex" type="tel" placeholder="Giới tính" name="input-product_sex">
+                    <input id="product_sex" type="tel" placeholder="Giới tính" name="product_sex">
                     <label for="product_price" class="modal-label">Giá</label>
-                    <input id="product_price" type="text" placeholder="Giá" name="input-product_price">
+                    <input id="product_price" type="text" placeholder="Giá" name="product_price">
                 </div>
-                <button id="update" onclick="updateProduct()">Cập nhật</button>
-            </div>
+                <button id="update">Cập nhật</button>
+            </form>
         </div>
     </div>
 

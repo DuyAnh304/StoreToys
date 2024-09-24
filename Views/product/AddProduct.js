@@ -1,6 +1,9 @@
 // JavaScript Document
-const url = 'http://localhost/StoreToys-BE/API/product';
-
+const proUrl = 'http://localhost:8080/StoreToys-API/product';
+const catUrl = 'http://localhost:8080/StoreToys-API/category';
+const braUrl = 'http://localhost:8080/StoreToys-API/brand';
+const createForm = document.getElementById('product-create-form');
+const tokens = localStorage.getItem('tokens');
 function start() {
     handleCreateForm();
     fetchCategoriesAndBrands();
@@ -9,14 +12,16 @@ function start() {
 start();
 
 function createProduct(data) {
+    let storedToken = JSON.parse(localStorage.getItem('tokens'));
+    console.log(storedToken.accessToken)
     let options = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Authorization': `Bearer ${storedToken.accessToken}`
         },
-        body: JSON.stringify(data)
+        body: data
     }
-    fetch(url, options)
+    fetch(proUrl, options)
 	.then(function(res){
 		return res.json();
 	})
@@ -31,33 +36,24 @@ function handleCreateForm() {
     createBtn.onclick = function(event) {
         event.preventDefault(); // Ngăn chặn hành động mặc định của nút gửi
         
-        let product_name = document.querySelector('input[name="product_name"]').value;
-        let product_image = document.querySelector('input[name="product_image"]').files[0];
-        let imageURL ='Assets/image/' + product_image.name;
-        let product_sex = document.querySelector('input[name="product_sex"]').value;
-        let product_price = document.querySelector('input[name="product_price"]').value;
-        let category_id = document.querySelector('select[name="category_id"]').value; 
-        let brand_id = document.querySelector('select[name="brand_id"]').value; 
-        let product = {
-            category_id: category_id,
-            brand_id: brand_id,
-            product_name: product_name,
-            product_img: imageURL,
-            product_sex: product_sex,
-            product_price: product_price
-        };
-        console.log(product);
-        createProduct(product);
+        let product_image = document.querySelector('input[name="product_img"]').files[0];
+        if (product_image) {
+            let data = new FormData(createForm);            
+            // Gọi hàm tạo thương hiệu với dữ liệu đã được chọn
+            createProduct(data);
+        } else {
+            alert('Vui lòng chọn hình ảnh');
+        }
     };
 }
 
 function fetchCategoriesAndBrands() {
-    fetch('http://localhost/StoreToys-BE/API/category')
+    fetch(catUrl)
         .then(response => response.json())
         .then(categories => {
            
             const categorySelect = document.querySelector('select[name="category_id"]');
-            categories.forEach(category => {
+            categories.data.forEach(category => {
               console.log(category)
                 const option = document.createElement('option');
                 option.value = category.category_id;
@@ -67,11 +63,11 @@ function fetchCategoriesAndBrands() {
         })
         .catch(error => console.error('Error fetching categories:', error));
 
-    fetch('http://localhost/StoreToys-FE/API/brand')
+    fetch(braUrl)
         .then(response => response.json())
         .then(brands => {
             const brandSelect = document.querySelector('select[name="brand_id"]');
-            brands.forEach(brand => {
+            brands.data.forEach(brand => {
                 const option = document.createElement('option');
                 option.value = brand.brand_id;
                 option.textContent = brand.brand_name;

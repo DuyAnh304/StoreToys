@@ -53,6 +53,11 @@
     display: block;
     background: #252a2b;
 }
+table.product-list tr{
+    text-align: center;
+    font-size: 1.4rem;
+    border: #fff;
+}
 .product-img{
     width: 10%;
 }

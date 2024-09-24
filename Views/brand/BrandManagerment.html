@@ -13,7 +13,7 @@
         <h1 style="margin-left: 120px;">ADMIN</h1>
         <h1 > Cửa hàng Stoys</h1>
         <div style="margin-right: 120px;margin-top: 3.5rem;" class="back">
-            <a style="color: white;" href="../admin.php">Đến trang chủ</a>
+            <a style="color: white;" href="../login/Login.html">Đăng xuất</a>
             <i class="bx bx-right-arrow-alt"></i>
         </div>
     </header>
@@ -23,11 +23,15 @@
                 <h1>admin</h1>
             </div>
             <div class="menu">
-                <div class="taikhoan">
+                <div class="taikhoan"></div>
                     <h3>Quản lý tài khoản</h3>
                     <ul> 
-                        <li><a href="../user/AddUser.html">Thêm tài khoản</a></li>
-                        <li><a href="../user/UserManagerment.html">Danh sách tài khoản</a></li>
+                        <li><a href="../account/AccountManagerment.html">Danh sách tài khoản</a></li>
+                    </ul>
+                <div class="taikhoan">
+                    <h3>Quản lý người dùng</h3>
+                    <ul> 
+                        <li><a href="../user/UserManagerment.html">Danh sách người dùng</a></li>
                     </ul>
                 </div>
                 <div class="taikhoan">
@@ -84,13 +88,17 @@
 				<button onClick="hiddenUpdateBrand()">X</button>
 			</div>
 			<header class="modal-header">Cập nhật thương hiệu</header>
-			<div class="modal-body">
+			<form class="modal-body" id="brand-update-form" enctype="multipart/form-data">
 				<label for="brand-name" class="modal-label">
 					Tên thương hiệu
 				</label>
-				<input id = "brand-name" type="text" placeholder="Tên thương hiệu" name="input-brand-name">
+				<input id = "brand-name" type="text" placeholder="Tên thương hiệu" name="brand_name">
+                <label for="brand-name" class="modal-label">
+					Ảnh thương hiệu
+				</label>
+                <input id = "brand-img" type="file" name="brand_image">
 				<button id="update">Cập nhật</button>
-			</div>
+			</form>
 		</div>
 	</div>
 </body>

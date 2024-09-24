@@ -57,13 +57,13 @@
                         <div class="navbar-sex">
                             <ul class="news-list">
                                 <li class="list-content hover-region">
-                                    <a href="Sex.html?sex=nam" class="content">Bé trai</a>
+                                    <a href="gioitinh.php?sex=nam" class="content">Bé trai</a>
                                 </li>
                                 <li class="list-content hover-region">
-                                    <a href="Sex.html?sex=nu" class="content">Bé gái</a>
+                                    <a href="gioitinh.php?sex=nu" class="content">Bé gái</a>
                                 </li>
                                 <li class="list-content hover-region">
-                                    <a href="Sex.html?sex=unisex" class="content">Unisex</a>
+                                    <a href="gioitinh.php?sex=unisex" class="content">Unisex</a>
                                 </li>
                             </ul>
                         </div>
@@ -78,7 +78,6 @@
                     <li class="navbar-item navbar-item-brand">
                         <div class="navbar-brand">
                             <ul class="news-list" id="brand-name">
-
                             </ul>
                         </div>
                         <a href="" class="item-link hover-icon">Thương hiệu</a>
@@ -132,17 +131,8 @@
                     <h1 class="title">Danh mục sản phẩm</h1>
                 </div>
                 <div class="category-product">
-                    <div class="product-list"></div>
-
+                    <div class="product-list"></div>		
 			</div>
-            <div class="pagination">
-                <button class="prev-btn">&laquo; Trước</button>
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="next-btn">Tiếp theo &raquo;</button>
-            </div>
-            
 		</section>
     </div>
     <footer class="footer">
@@ -211,55 +201,6 @@
             </div>
         </footer>
 </div>
-  <script src="Home.js"></script>
+  <script src="gioitinh.js"></script>
 </body>
-<style>
-    .pagination {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .page-btn {
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      color: #333;
-      padding: 10px 15px;
-      margin: 0 5px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-    
-    .page-btn:hover {
-      background-color: #ddd;
-    }
-    
-    .page-btn.active {
-      background-color: #007bff;
-      color: #fff;
-      border-color: #007bff;
-    }
-    
-    .prev-btn,
-    .next-btn {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      margin: 0 5px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-    
-    .prev-btn:hover,
-    .next-btn:hover {
-      background-color: #0056b3;
-    }
-    </style>
-    
 </html>

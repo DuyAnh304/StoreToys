@@ -35,6 +35,8 @@
 </div>
 <script>
 window.onload = function() {
+    const user = JSON.parse(localStorage.getItem('user')); 
+    const userId = user ? user.user_id : null; 
     const checkoutForm = document.getElementById('checkoutForm');
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -42,21 +44,48 @@ window.onload = function() {
 
     document.getElementById('totalMoney').value = totalMoney;
 
-    checkoutForm.addEventListener('submit', function(event) {
-        event.preventDefault(); 
+    
 
+    checkoutForm.addEventListener('submit', function(event) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+        console.log(cartItems)
         const orderDate = document.getElementById('orderDate').value;
         const note = document.getElementById('note').value;
-
         const orderData = {
-            user_id: 1,
+            user_id: userId,
             total_money: totalMoney,
             order_date: orderDate,
             note: note,
-            product: []
+            product: [] 
         };
+        const productList = document.getElementById('productList');
+        cartItems.forEach(item => {
+            // const productItem = document.createElement('div');
+            // productItem.classList.add('product-item'); 
+            // const productName = document.createElement('span');
+            // productName.classList.add('product-name');
+            // productName.textContent = `Sản phẩm: ${item.product_name}`;
+            // const productQuantity = document.createElement('span');
+            // productQuantity.classList.add('product-quantity');
+            // productQuantity.textContent = `Số lượng: ${item.quantity}`;
+            // const productPrice = document.createElement('span');
+            // productPrice.classList.add('product-price');
+            // productPrice.textContent = `Giá: ${item.product_price} VNĐ`;
 
-        fetch('http://localhost/StoreToys-BE	/API/order', {
+            // productItem.appendChild(productName);
+            // productItem.appendChild(productQuantity);
+            // productItem.appendChild(productPrice);
+
+            // productList.appendChild(productItem);
+
+            orderData.product.push({
+                product_id: item.product_id,
+                quantity: item.quantity,
+                product_price: item.product_price
+            });
+        });
+        event.preventDefault();     
+        fetch('http://localhost/StoreToys-BE/API/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,6 +95,9 @@ window.onload = function() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            alert('Thanh toán thành công! Mua tiếp đi bạn');
+            console.log(orderData);
+            window.location.href = 'home.html';
         })
         .catch(error => console.error('Error:', error));
     });
@@ -133,6 +165,46 @@ button {
 button:hover {
     background-color: #555;
 }
+
+#productList {
+    margin-top: 20px;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-quantity,
+.product-price {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.product-quantity::before,
+.product-price::before {
+    content: ": ";
+}
+
+.product-price {
+    color: #007bff; 
+}
+
+/* Hover effect */
+.product-item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+
 </style>
 </body>
 </html>

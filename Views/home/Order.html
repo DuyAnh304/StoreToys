@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../Assets/css/home/base.css">
+    <link rel="stylesheet" href="../../Assets/css/home/thanhtoan.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="grid">
+            <div class="main-pay">
+                <div class="main-information-delivery">
+                    <div class="store">STORETOYS</div>
+                    <div class="delivery-title">Thông tin giao hàng</div>
+                    <form class="delivery-form">
+                        <input class="delivery-text" name="name" type="text" placeholder="Họ và tên" required>
+                        <input class="delivery-text" name="phone" type="text" placeholder="Số điện thoại" required>
+                        <input class="delivery-text" name="address" type="text" placeholder="Địa chỉ" required>
+                        <label style="font-size: 1.4rem" for="ghichu">Ghi chú: <span style="color: red;">*</span></label>
+                        <textarea class="delivery-text" name="note" id="ghichu" cols="30" rows="5"></textarea>
+                        <button class="pay-button" name="pay">Hoàn tất đơn hàng</button>
+                    </form>
+                    <a href="Cart.html">Giỏ hàng</a>
+                </div>
+                <div class="main-information-oder">
+                    <img src="../../Assets/image/stoys.png" alt="" style="width: 15%; margin-top: -15px;">
+                    <div class="delivery-title">Thông tin đơn hàng</div>
+                    <table border ="none" style="border-collapse: collapse" class="product-list"></table>
+                    <div class="order-pay">Tổng cộng:</div>
+                    <div class="order-sum"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src = "Order.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule "storetoys.vn" "routes/index.php"

@@ -23,12 +23,12 @@
                 <h1>admin</h1>
             </div>
             <div class="menu">
-                <div class="taikhoan">
-                    <div class="taikhoan"></div>
+                <div class="taikhoan"></div>
                     <h3>Quản lý tài khoản</h3>
                     <ul> 
                         <li><a href="../account/AccountManagerment.html">Danh sách tài khoản</a></li>
                     </ul>
+                <div class="taikhoan">
                     <h3>Quản lý người dùng</h3>
                     <ul> 
                         <li><a href="../user/UserManagerment.html">Danh sách người dùng</a></li>
@@ -37,15 +37,15 @@
                 <div class="taikhoan">
                     <h3>Quản lý danh mục sản phẩm</h3>
                     <ul>
-                        <li><a href="AddCategory.html">Thêm danh mục sản phẩm</a></li>
-                        <li><a href="">Danh sách danh mục sản phẩm</a></li>
+                        <li><a href="../category/AddCategory.html">Thêm danh mục sản phẩm</a></li>
+                        <li><a href="../category/CategoryManagerment.html">Danh sách danh mục sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="taikhoan">
                     <h3>Quản lý thương hiệu</h3>
                     <ul>
-                        <li><a href="../brand/AddBrand.html">Thêm thương hiệu</a></li>
-                        <li><a href="../brand/BrandManagerment.html">Danh sách thương hiệu</a></li>
+                        <li><a href="AddBrand.html">Thêm thương hiệu</a></li>
+                        <li><a href="BrandManagerment.html">Danh sách thương hiệu</a></li>
                     </ul>
                 </div>
                 <div class="taikhoan">
@@ -58,25 +58,26 @@
                 <div class="taikhoan">
                     <h3>Quản lý đơn hàng</h3>
                     <ul>
-                        <li><a href="../admin/donhang.php">Danh sách đơn hàng</a></li>
+                        <li><a href="">Danh sách đơn hàng</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 		<div class="right">
             <div class="header">
-				<h1>Danh Mục</h1>  
+				<h1>Thương hiệu</h1>  
             </div>
             <div class="list-acc">
                 <table style="width: 1000px;" class="table">
 					<thead>
 						<tr>
                             <th style="margin-left: 2rem;" scope="col">STT</th>
-                            <th style="margin-left: 2rem;" scope="col">Tên danh mục</th>
-                            <th style="margin-left: 2rem;" scope="col">Khác</th>
+                            <th style="margin-left: 2rem;" scope="col">Tên tài khoản</th>
+                            <th style="margin-left: 2rem;" scope="col">Mật khẩu</th>
+                            <th style="margin-left: 2rem;" scope="col">Vai trò</th>
                         </tr>
                     </thead>
-                    <tbody id="category">
+                    <tbody id="account">
 					</tbody>
                 </table>
             </div>
@@ -85,18 +86,22 @@
 	<div class="modal js-modal">
 		<div class="modal-container">
 			<div class="modal-close">
-				<button onClick="hiddenUpdateCategory()">X</button>
+				<button onClick="hiddenUpdateBrand()">X</button>
 			</div>
-			<header class="modal-header">Cập nhật danh mục</header>
-			<div class="modal-body">
-				<label for="category-name" class="modal-label">
-					Tên danh mục
+			<header class="modal-header">Cập nhật tài khoản</header>
+			<form class="modal-body" id="brand-update-form" enctype="multipart/form-data">
+				<label for="brand-name" class="modal-label">
+					Tên thương hiệu
 				</label>
-				<input id = "category-name" type="text" placeholder="Tên danh mục" name="input-category-name">
+				<input id = "brand-name" type="text" placeholder="Tên thương hiệu" name="brand_name">
+                <label for="brand-name" class="modal-label">
+					Ảnh thương hiệu
+				</label>
+                <input id = "brand-img" type="file" name="brand_image">
 				<button id="update">Cập nhật</button>
-			</div>
+			</form>
 		</div>
 	</div>
 </body>
-<script src = "CategoryManagerment.js"></script>
+<script src = "AccountManagerment.js"></script>
 </html>

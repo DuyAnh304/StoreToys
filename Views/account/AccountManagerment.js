@@ -1,37 +1,47 @@
 // JavaScript Document
-const catUrl = 'http://localhost:8080/StoreToys-API/category/';
-const name = document.getElementById('category');
+const accUrl = 'http://localhost:8080/StoreToys-API/account/';
+const name = document.getElementById('account');
 const modal = document.querySelector('.js-modal');
 const inputCategory = document.getElementById('category-name');
 const btnConfirmUpdate = document.getElementById('update');
+var storedToken = JSON.parse(localStorage.getItem('tokens'));   
 var index = 0;
 var ID = 0;
 
 function start(){
-	getCategory();
+	getAccount();
 }
 start();
-function getCategory(){
-	fetch(catUrl)
+function getAccount(){
+    let options = {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${storedToken.accessToken}`
+        }
+    }
+	fetch(accUrl, options)
 	.then(function(res){
 		return res.json();
 	})	
 	.then(function(datas) {
 		index = 0;
-		var htmls = datas.data.map(renderCategory);
+		var htmls = datas.data.map(renderAccount);
 		var html = htmls.join('');
 		name.innerHTML = html;
 	})
 	.catch(error => console.log(error));
 }
-function renderCategory(data){
+function renderAccount(data){
 	let stt = ++index;
 	return `<tr>
 				<th scope="row">${stt}</th>
-				<td>${data.category_name}</td>
+				<td>${data.username}</td>
+                <td>${data.password}</td>
+                <td>${data.role_name}</td>
 				<td>
-					<button class="btn btn-primary" onclick="handleUpdateCategory(${data.category_id})">Update</button>
-					<button class="btn btn-primary" onclick="handleDeleteCategory(${data.category_id})">Delete</button>
+                    <button class="btn btn-primary" onclick="handleUpdateCategory(${data.account_id})">Detail</button>
+					<button class="btn btn-primary" onclick="handleUpdateCategory(${data.account_id})">Update</button>
+					<button class="btn btn-primary" onclick="handleDeleteCategory(${data.account_id})">Delete</button>
 				</td>
 			</tr>`;
 }

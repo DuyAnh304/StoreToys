@@ -8,38 +8,42 @@
 </head>
 <body>
     <div class="container my-5">
-        <form id="userForm">
+        <form id="product-create-form">
             <div class="mb-3">
+                <label class="form-label">Tên sản phẩm</label>
+                <input type="text" class="form-control" placeholder="name" name="product_name" autocomplete="off">
                 <div class="mb-3">
-                    <label for="category_id" class="form-label">Category</label>
+                    <label for="category_id" class="form-label">Danh mục</label>
                     <select class="form-select" id="category_id" name="category_id">
                         
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="brand_id" class="form-label">Brand</label>
+                    <label for="brand_id" class="form-label">Thương hiệu</label>
                     <select class="form-select" id="brand_id" name="brand_id">
                         
                     </select>
                 </div>
-                <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" placeholder="name" name="product_name" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label class="form-label">Product Image</label>
-                <input type="file" class="form-control" placeholder="ảnh" name="product_image" autocomplete="current-password">
+                <label class="form-label">Product Quantity</label>
+                <input type="text" class="form-control" placeholder="Số lượng" name="product_quantity" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label class="form-label">Product sex</label>
+                <label class="form-label">Ảnh sản phẩm</label>
+                <input type="file" class="form-control" placeholder="ảnh" name="product_img" autocomplete="current-password">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Giới tính</label>
                 <input type="text" class="form-control" placeholder="giới tính" name="product_sex" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label class="form-label">Product price</label>
+                <label class="form-label">Giá</label>
                 <input type="number" class="form-control" placeholder="price" name="product_price" autocomplete="off">
             </div>
             
             <button type="submit" class="btn btn-primary" name="submit" id="btnSubmit">Thêm</button>
-        </form>
+        </form> 
     </div>
     <script src="AddProduct.js"></script>
 </body>
