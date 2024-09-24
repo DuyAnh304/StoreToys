@@ -133,7 +133,7 @@ function order(data){
         res.json();
     })
     .then(function(){
-		// window.location.href = '../home/Home.html'
+		window.location.href = '../home/Thanks.html'
     })
 	.catch(error => console.error(error));
 }
