@@ -2,10 +2,14 @@ package com.toyshop.StoreToys_API.service;
 
 import com.toyshop.StoreToys_API.DTOs.request.AccountRequest;
 import com.toyshop.StoreToys_API.DTOs.respone.AccountRespone;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AccountService {
+
+    UserDetailsService userDetailsService();
 
     List<AccountRespone> getAllAccounts();
 

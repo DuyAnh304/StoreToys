@@ -16,4 +16,10 @@ public interface ProductService {
 	ProductRespone updateProduct(int id, ProductRequest pR);
 	
 	void deleteProduct(int id);
+
+	List<ProductRespone> getByCategoryName(String name);
+
+	List<ProductRespone> getByBrandName(String name);
+
+	List<ProductRespone> getBySex(String sex);
 }

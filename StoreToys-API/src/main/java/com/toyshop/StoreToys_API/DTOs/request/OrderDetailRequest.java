@@ -1,4 +1,4 @@
-package com.toyshop.StoreToys_API.DTOs.respone;
+package com.toyshop.StoreToys_API.DTOs.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -11,14 +11,14 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BrandRespone {
+public class OrderDetailRequest {
 
-    @JsonProperty("brand_id")
-    int brand_id;
+    @JsonProperty("product_id")
+    Integer product_id;
 
-    @JsonProperty("brand_name")
-    String brand_name;
+    @JsonProperty("quantity")
+    Integer quantity;
 
-    @JsonProperty("brand_img")
-    String brand_img;
+    @JsonProperty("total_price")
+    Float totalPrice;
 }

@@ -25,6 +25,11 @@ public class BrandController {
         return ResponseEntity.status(200).body(new APIRespone<>(bSer.getBrand(id), "Request successfully"));
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> getBrandByName(@PathVariable String name) {
+        return ResponseEntity.status(200).body(new APIRespone<>(bSer.getByBrandName(name), "Request successfully"));
+    }
+
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<?> addBand(@ModelAttribute BrandRequest bReq){
         return ResponseEntity.status(201)

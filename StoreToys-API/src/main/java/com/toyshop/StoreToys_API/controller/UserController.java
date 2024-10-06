@@ -5,6 +5,7 @@ import com.toyshop.StoreToys_API.DTOs.respone.APIRespone;
 import com.toyshop.StoreToys_API.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +15,7 @@ public class UserController {
     @Autowired
     private UserService uSer;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = {"/", ""})
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(new APIRespone<>(uSer.getAllUsers(), "Request successfully"));

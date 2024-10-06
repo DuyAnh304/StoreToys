@@ -100,7 +100,23 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		pRep.deleteById(id);
 	}
-	
+
+	@Override
+	public List<ProductRespone> getByCategoryName(String name) {
+		return pMap.toListRespone(pRep.findByCategoryName(name));
+	}
+
+	@Override
+	public List<ProductRespone> getByBrandName(String name) {
+		List<Product> list = pRep.findByBrandName(name).orElseThrow();
+		return pMap.toListRespone(list);
+	}
+
+	@Override
+	public List<ProductRespone> getBySex(String sex) {
+		return pMap.toListRespone(pRep.findBySex(sex).orElseThrow());
+	}
+
 	private Product getById(int id) {
 		return pRep.findById(id).orElseThrow();
 	}

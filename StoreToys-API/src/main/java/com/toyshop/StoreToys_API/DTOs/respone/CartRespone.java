@@ -1,5 +1,6 @@
 package com.toyshop.StoreToys_API.DTOs.respone;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,14 +12,15 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BrandRespone {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CartRespone {
 
-    @JsonProperty("brand_id")
-    int brand_id;
+    @JsonProperty("cart_id")
+    int id;
 
-    @JsonProperty("brand_name")
-    String brand_name;
+    @JsonProperty("product")
+    ProductRespone productRespone;
 
-    @JsonProperty("brand_img")
-    String brand_img;
+    @JsonProperty("quantity")
+    int quantity;
 }

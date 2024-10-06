@@ -22,7 +22,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryService cS;
 	
-	@GetMapping("/")
+	@GetMapping(value = {"/", ""})
 	public ResponseEntity<?> getAllCategory(){
 		return ResponseEntity.ok(new APIRespone<>(cS.getAllCategory(), "Request successfully"));
 	}

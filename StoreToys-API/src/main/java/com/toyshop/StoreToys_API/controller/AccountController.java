@@ -5,6 +5,7 @@ import com.toyshop.StoreToys_API.DTOs.respone.APIRespone;
 import com.toyshop.StoreToys_API.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,11 +16,13 @@ public class AccountController {
     private AccountService aSer;
 
     @GetMapping(value = {"/", ""})
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAllAccounts() {
-        return ResponseEntity.ok(new APIRespone<>(aSer.getAllAccountsWithUsers(), "Request successfully"));
+        return ResponseEntity.ok(new APIRespone<>(aSer.getAllAccounts(), "Request successfully"));
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAccountById(@PathVariable("id") int id) {
         return ResponseEntity.status(200).body(new APIRespone<>(aSer.getAccount(id), "Request successfully"));
     }

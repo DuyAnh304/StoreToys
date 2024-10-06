@@ -2,6 +2,7 @@ package com.toyshop.StoreToys_API.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +17,7 @@ import com.toyshop.StoreToys_API.DTOs.respone.APIRespone;
 import com.toyshop.StoreToys_API.service.ProductService;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
@@ -34,7 +35,8 @@ public class ProductController {
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public ResponseEntity<?> addProduct(@ModelAttribute ProductRequest pReq){
-		return ResponseEntity.status(201).body(new APIRespone<>(pSer.addProduct(pReq), "Product created successfully"));
+		return ResponseEntity.status(201)
+				.body(new APIRespone<>(pSer.addProduct(pReq), "Product created successfully"));
 	}
 	
 	@PutMapping(value = "/{id}", consumes = {"multipart/form-data"})
@@ -48,5 +50,23 @@ public class ProductController {
 		pSer.deleteProduct(id);
 		return ResponseEntity.status(200)
 				.body(new APIRespone<>("Product deleted successfully"));
+	}
+
+	@GetMapping("/category/{name}")
+	public ResponseEntity<?> getProductByCategory(@PathVariable String name) {
+		return ResponseEntity.status(200)
+				.body(new APIRespone<>(pSer.getByCategoryName(name), "Request successfully"));
+	}
+
+	@GetMapping("/brand/{name}")
+	public ResponseEntity<?> getProductByBrand(@PathVariable String name) {
+		return ResponseEntity.status(200)
+				.body(new APIRespone<>(pSer.getByBrandName(name), "Request successfully"));
+	}
+
+	@GetMapping("/sex/{sex}")
+	public ResponseEntity<?> getProductBySex(@PathVariable String sex) {
+		return ResponseEntity.status(200)
+				.body(new APIRespone<>(pSer.getBySex(sex), "Request successfully"));
 	}
 }

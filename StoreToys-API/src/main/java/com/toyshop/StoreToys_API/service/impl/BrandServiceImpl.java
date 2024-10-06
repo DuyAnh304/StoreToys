@@ -66,8 +66,18 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void deleteBrand(int id) {
-        this.findById(id);
+        Brand b = this.findById(id);
+        try {
+            this.remove(b.getBrandImg());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         this.bRepo.deleteById(id);
+    }
+
+    @Override
+    public List<BrandRespone> getByBrandName(String brandName) {
+        return bMap.toListRespone(bRepo.findByBrandName(brandName).orElseThrow());
     }
 
     private Path getUploadDirLocation() throws IOException {
@@ -83,6 +93,14 @@ public class BrandServiceImpl implements BrandService {
         Path uploadDir = getUploadDirLocation().resolve(fileName);
         Files.copy(file.getInputStream(), uploadDir, StandardCopyOption.REPLACE_EXISTING);
         return fileName;
+    }
+
+
+    private void remove(String imgName) throws IOException {
+        Path removeDir = this.getUploadDirLocation().resolve(imgName);
+        if (Files.exists(removeDir)) {
+            Files.delete(removeDir);
+        }
     }
 
     private Brand findById(int id) {

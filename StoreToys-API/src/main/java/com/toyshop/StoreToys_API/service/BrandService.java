@@ -18,4 +18,6 @@ public interface BrandService {
 
     void deleteBrand(int id);
 
+    List<BrandRespone> getByBrandName(String brandName);
+
 }
