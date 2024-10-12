@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/StoreToys-API/brand';
+const url = 'http://localhost:8081/StoreToys-API/brand';
 const tokens = localStorage.getItem('tokens');
 const updateForm = document.getElementById('brand-create-form');
 function start() {
@@ -24,7 +24,7 @@ function createBrand(data) {
     .then(function(datas) {
         console.log(datas);
         // Chuyển hướng về trang quản lý thương hiệu sau khi thêm thành công
-        window.location.href = "http://localhost/StoreToys-FE/Views/brand/BrandManagerment.html";
+        window.location.href = "http://localhost:81/StoreToys-FE/Views/brand/BrandManagerment.html";
     })
     .catch(function(error) {
         console.log(error);

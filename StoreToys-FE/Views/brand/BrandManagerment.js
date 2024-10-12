@@ -1,5 +1,5 @@
-const braUrl = 'http://localhost:8080/StoreToys-API/brand/';
-const imgUrl = 'http://localhost:8080/StoreToys-API/img/'
+const braUrl = 'http://localhost:8081/StoreToys-API/brand/';
+const imgUrl = 'http://localhost:8081/StoreToys-API/img/'
 const updateForm = document.getElementById('brand-update-form');
 const token = localStorage.getItem('tokens');
 const name = document.getElementById('brand'); 

@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/StoreToys-API/auth/access';
+const url = 'http://localhost:8081/StoreToys-API/auth/access';
 
 function login() {
     const username = document.getElementById('username').value;
@@ -30,9 +30,9 @@ function login() {
                 const storedToken = JSON.parse(localStorage.getItem('tokens'));
                 console.log(storedToken);
                 if (storedToken.role === "ADMIN") {
-                    window.location.href = 'http://localhost/StoreToys-FE/Views/product/ProductManagerment.html';
+                    window.location.href = 'http://localhost:81/StoreToys-FE/Views/product/ProductManagerment.html';
                 } else {
-                    window.location.href = 'http://localhost/StoreToys-FE/Views/home/Home.html';
+                    window.location.href = 'http://localhost:81/StoreToys-FE/Views/home/Home.html';
                 }
             }
         })

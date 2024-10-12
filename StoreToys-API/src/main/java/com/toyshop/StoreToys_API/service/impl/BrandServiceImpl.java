@@ -7,6 +7,7 @@ import com.toyshop.StoreToys_API.model.Brand;
 import com.toyshop.StoreToys_API.repository.BrandRepository;
 import com.toyshop.StoreToys_API.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +28,7 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandMapper bMap;
 
-    private final String folder = "src/main/resources/static/uploads";
+    private final String folder = "uploads";
 
     @Override
     public List<BrandRespone> getAllBrands() {
@@ -94,7 +95,6 @@ public class BrandServiceImpl implements BrandService {
         Files.copy(file.getInputStream(), uploadDir, StandardCopyOption.REPLACE_EXISTING);
         return fileName;
     }
-
 
     private void remove(String imgName) throws IOException {
         Path removeDir = this.getUploadDirLocation().resolve(imgName);

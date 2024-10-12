@@ -1,0 +1,44 @@
+name: StoreToys
+services:
+  storetoys-fe:
+    container_name: StoreToys-fe
+    build:
+      context: /StoreToys-FE/.
+      dockerfile: Dockerfile
+    ports:
+      - '81:80'
+    volumes:
+      - ./StoreToys-FE/Views:/usr/share/nginx/html/StoreToys-FE/Views
+      - ./StoreToys-FE/Assets:/usr/share/nginx/html/StoreToys-FE/Assets
+  storetoys-api:
+    container_name: StoreToys-api
+    build:
+      context: /StoreToys-API/.
+      dockerfile: Dockerfile
+    ports:
+      - '8081:8080'
+    env_file:
+      - /StoreToys-API/.env
+    networks:
+      - storetoys-network
+    depends_on:
+      - mysql
+  mysql:
+    container_name: StoreToys-mysql
+    image: mysql:8.0.39-debian
+    restart: always
+    ports:
+      - '3307:3306'
+    volumes:
+     - storetoys-data:/var/lib/mysql
+    env_file:
+     - db.env
+    networks:
+      - storetoys-network
+volumes:
+  storetoys-data:
+    name: storetoys-data
+networks:
+  storetoys-network:
+    name: storetoys-network
+    driver: bridge

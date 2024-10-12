@@ -1,8 +1,8 @@
 // JavaScript Document
-const proUrl = 'http://localhost:8080/StoreToys-API/product/';
-const catUrl = 'http://localhost:8080/StoreToys-API/category';
-const braUrl = 'http://localhost:8080/StoreToys-API/brand';
-const imgUrl = 'http://localhost:8080/StoreToys-API/img/'
+const proUrl = 'http://localhost:8081/StoreToys-API/product/';
+const catUrl = 'http://localhost:8081/StoreToys-API/category';
+const braUrl = 'http://localhost:8081/StoreToys-API/brand';
+const imgUrl = 'http://localhost:8081/StoreToys-API/img/'
 const name = document.getElementById('product');
 const modal = document.querySelector('.js-modal');
 const inputCategory = document.getElementById('category');
