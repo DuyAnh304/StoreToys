@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductMapper pMap;
 	
-	private final String folder = "src/main/resources/static/uploads";
+	private final String folder = "uploads";
 
 	@Override
 	public List<ProductRespone> getAllProduct() {
@@ -98,7 +98,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProduct(int id) {
 		// TODO Auto-generated method stub
-		pRep.deleteById(id);
+		Product p = this.getById(id);
+		try {
+			this.remove(p.getProductImg());
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		this.bRep.deleteById(id);
 	}
 
 	@Override
@@ -142,5 +148,12 @@ public class ProductServiceImpl implements ProductService {
         Path uploadDir = getUploadDirLocation().resolve(fileName);
         Files.copy(file.getInputStream(), uploadDir, StandardCopyOption.REPLACE_EXISTING);
         return fileName;
+	}
+
+	private void remove(String imgName) throws IOException {
+		Path removeDir = this.getUploadDirLocation().resolve(imgName);
+		if (Files.exists(removeDir)) {
+			Files.delete(removeDir);
+		}
 	}
 }

@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 @RestController
 public class FileController {
 
-    private final String folder = "src/main/resources/static/uploads";
+    private final String folder = "uploads";
 
     @GetMapping("/img/{name}")
     public ResponseEntity<?> getImg(@PathVariable String name) throws MalformedURLException {

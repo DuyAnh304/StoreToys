@@ -27,7 +27,7 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandMapper bMap;
 
-    private final String folder = "src/main/resources/static/uploads";
+    private final String folder = "uploads";
 
     @Override
     public List<BrandRespone> getAllBrands() {

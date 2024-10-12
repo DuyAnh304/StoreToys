@@ -21,7 +21,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
-
+    
     private final AccountRepository aRep;
     private final AuthenticationManager aMan;
     private final JWTService jSer;
