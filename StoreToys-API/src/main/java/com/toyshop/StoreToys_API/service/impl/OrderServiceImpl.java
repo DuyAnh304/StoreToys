@@ -46,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
         Set<OrderDetail> list = new HashSet<>();
         for(OrderDetailRequest request : orReq.getListCart()){
             list.add(this.getOrderDetail(request, order));
+            caRep.orderProduct(orReq.getUserId(), request.getProduct_id());
         }
         order.setOrderDetails(list);
         return mapper.toOrderRespone(orRep.save(order));
