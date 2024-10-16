@@ -1,5 +1,6 @@
 package com.toyshop.StoreToys_API.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
