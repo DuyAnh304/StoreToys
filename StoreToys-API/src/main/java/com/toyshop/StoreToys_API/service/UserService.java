@@ -7,10 +7,12 @@ import java.util.List;
 
 public interface UserService {
 
-    public List<UserRespone> getAllUsers();
+    List<UserRespone> getAllUsers();
 
-    public UserRespone getUser(int id);
+    UserRespone getUser(int id);
 
-    public UserRespone updateUser(int id, UserRequest uReq);
+    UserRespone getUserByAccountId(int id);
+
+    UserRespone updateUser(int id, UserRequest uReq);
 
 }

@@ -84,6 +84,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return; // can bat ngoai le
         }
         final String username = jSer.extractUsername(accessToken, TokenType.ACCESS_TOKEN);
+        System.out.println(username);
         Optional<Account> account = aRep.findByUsername(username);
         tSer.deleteToken(account.get().getUsername());
     }

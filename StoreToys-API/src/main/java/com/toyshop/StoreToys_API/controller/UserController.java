@@ -26,6 +26,12 @@ public class UserController {
         return ResponseEntity.status(200).body(new APIRespone<>(uSer.getUser(id), "Request successfully"));
     }
 
+    @GetMapping("/account/{id}")
+    public ResponseEntity<?> getUserByAccountId(@PathVariable("id") int id) {
+        return ResponseEntity.status(200)
+                .body(new APIRespone<>(uSer.getUserByAccountId(id), "Request successfully"));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable("id") int id, @RequestBody UserRequest uReq) {
         return ResponseEntity.status(202)

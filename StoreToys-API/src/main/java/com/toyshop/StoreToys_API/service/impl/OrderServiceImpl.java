@@ -4,10 +4,8 @@ import com.toyshop.StoreToys_API.DTOs.request.OrderDetailRequest;
 import com.toyshop.StoreToys_API.DTOs.request.OrderRequest;
 import com.toyshop.StoreToys_API.DTOs.respone.OrderRespone;
 import com.toyshop.StoreToys_API.mapper.OrderMapper;
-import com.toyshop.StoreToys_API.model.Cart;
-import com.toyshop.StoreToys_API.model.Order;
-import com.toyshop.StoreToys_API.model.OrderDetail;
-import com.toyshop.StoreToys_API.model.User;
+import com.toyshop.StoreToys_API.model.*;
+import com.toyshop.StoreToys_API.repository.AccountRepository;
 import com.toyshop.StoreToys_API.repository.CartRepository;
 import com.toyshop.StoreToys_API.repository.OrderRepository;
 import com.toyshop.StoreToys_API.repository.UserRepository;
@@ -30,12 +28,15 @@ public class OrderServiceImpl implements OrderService {
 
     private final UserRepository uRep;
 
+    private final AccountRepository acRep;
+
     private final OrderMapper mapper;
 
     @Transactional
     @Override
     public OrderRespone createOrder(OrderRequest orReq) {
-        User u = this.getUserById(orReq.getUserId());
+        int userId = this.findAccountById(orReq.getUserId()).getUser().getUserId();
+        User u = this.getUserById(userId);
         Order order = Order.builder()
                 .user(u)
                 .customerName(orReq.getCustomerName())
@@ -63,6 +64,10 @@ public class OrderServiceImpl implements OrderService {
 
     private User getUserById(int id){
         return uRep.findById(id).orElseThrow(); // bat exception
+    }
+
+    private Account findAccountById(int id) {
+        return acRep.findById(id).orElseThrow();
     }
 
     private Cart findCartById(int id) {
