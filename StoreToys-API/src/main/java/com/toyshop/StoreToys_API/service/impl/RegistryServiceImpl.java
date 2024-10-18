@@ -10,24 +10,26 @@ import com.toyshop.StoreToys_API.model.User;
 import com.toyshop.StoreToys_API.repository.AccountRepository;
 import com.toyshop.StoreToys_API.repository.RoleRepository;
 import com.toyshop.StoreToys_API.service.RegistryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RegistryServiceImpl implements RegistryService {
 
-    @Autowired
-    private AccountRepository aRep;
+    private final AccountRepository aRep;
 
-    @Autowired
-    private AccountMapper aMap;
+    private final AccountMapper aMap;
 
-    @Autowired
-    private RoleRepository rRep;
+    private final RoleRepository rRep;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public AccountRespone registry(RegistryRequest requestReq) {
         Role existingRole = this.getRoleById(requestReq.getAccountRequest().getRole_id());
+        String encodedPass = passwordEncoder.encode(requestReq.getAccountRequest().getPassword());
         User newUser = User.builder()
                 .fullname(requestReq.getUserRequest().getFullname())
                 .phone(requestReq.getUserRequest().getPhone())
@@ -37,7 +39,7 @@ public class RegistryServiceImpl implements RegistryService {
                 .build();
         Account newAccount = Account.builder()
                 .username(requestReq.getAccountRequest().getUsername())
-                .password(requestReq.getAccountRequest().getPassword())
+                .password(encodedPass)
                 .role(existingRole)
                 .user(newUser)
                 .build();

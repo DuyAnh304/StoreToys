@@ -23,6 +23,17 @@ services:
       - storetoys-network
     depends_on:
       - mysql
+  redis:
+    image: redis:7.4.1-alpine
+    container_name: StoreToys-redis
+    hostname: redis
+    ports:
+      - '6380:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSH;FLUSHALL
+    networks:
+      - storetoys-network
   mysql:
     container_name: StoreToys-mysql
     image: mysql:8.0.39-debian

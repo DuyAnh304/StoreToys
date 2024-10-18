@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,16 +25,19 @@ import com.toyshop.StoreToys_API.repository.ProductRepository;
 import com.toyshop.StoreToys_API.service.ProductService;
 
 @Service
-@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-
-	private final ProductRepository pRep;
-
-	private final CategoryRepository cRep;
-
-	private final BrandRepository bRep;
-
-	private final ProductMapper pMap;
+	
+	@Autowired
+	private ProductRepository pRep;
+	
+	@Autowired
+	private CategoryRepository cRep;
+	
+	@Autowired
+	private BrandRepository bRep;
+	
+	@Autowired
+	private ProductMapper pMap;
 	
 	private final String folder = "uploads";
 
@@ -99,10 +102,10 @@ public class ProductServiceImpl implements ProductService {
 		Product p = this.getById(id);
 		try {
 			this.remove(p.getProductImg());
-		} catch (IOException e) {
+		}catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		this.pRep.deleteById(id);
+		this.bRep.deleteById(id);
 	}
 
 	@Override
@@ -111,6 +114,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Cacheable(value = "product", key = "#name", unless = "#result == null")
 	public List<ProductRespone> getByBrandName(String name) {
 		List<Product> list = pRep.findByBrandName(name).orElseThrow();
 		return pMap.toListRespone(list);

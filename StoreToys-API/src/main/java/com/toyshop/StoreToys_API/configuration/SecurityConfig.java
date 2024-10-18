@@ -34,8 +34,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/img/**").permitAll()
+                        .requestMatchers("/registry/**", "/registry", "/news").permitAll()
                         .requestMatchers(HttpMethod.GET, "/category", "/brand", "/product").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/category/**", "/brand/**", "/product/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/category/**", "/brand/**", "/product/**", "/news/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/category/**", "/brand/**", "/product/**")
                             .hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/category/**", "/brand/**", "/product/**")
@@ -44,6 +45,7 @@ public class SecurityConfig {
                             .hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/user/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/user/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/news/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(provider())
