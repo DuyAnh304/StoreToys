@@ -41,7 +41,9 @@ public class ValidationEmailServiceImpl implements ValidationEmailService {
 
     @Override
     public String validateCode(ValidationCodeRequest code) {
-        ValidationEmail email=vlEmailRepo.validateCode(code.getCode(), code.getEmail()).orElseThrow();
+        System.out.println(code.getCode());
+        System.out.println(code.getEmail());
+        ValidationEmail email=vlEmailRepo.findByValidationCodeAndEmail(code.getCode(), code.getEmail()).orElseThrow();
         vlEmailRepo.delete(email);
         return "True";
     }

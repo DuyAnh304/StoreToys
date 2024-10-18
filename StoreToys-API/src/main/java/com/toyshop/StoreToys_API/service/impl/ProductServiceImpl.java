@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -113,6 +114,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Cacheable(value = "product", key = "#name", unless = "#result == null")
 	public List<ProductRespone> getByBrandName(String name) {
 		List<Product> list = pRep.findByBrandName(name).orElseThrow();
 		return pMap.toListRespone(list);
